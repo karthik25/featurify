@@ -16,11 +16,19 @@ The need for this came up for my project because I found out LaunchDarkly that p
 
 1. Add the Featurify nuget package
 
-2. Implement a class that would provide the user information for the current user
+2. Create a class (implementing `IUserInfoStrategy`) that would provide the user information for the current user
 
-3. Implement a class that would provide the metadata for the feature
+3. Create a class  (implementing `IToggleMetadataFinder`) that would provide the metadata for the feature for a/all specific user(s)
+
+4. (Optional) Create a class that (implementing `IFeatureNameTransformer`) will dictate the format of feature names. Default is `Featurify.{featureName}`
 
 4. Add the featurify service in Startup.cs
+
+5. Use it in the controller by injecting `IFeaturifyServer`
+
+(or)
+
+Use it from the views by injecting `IFeaturifyServer`
 
 ### Credits
 
