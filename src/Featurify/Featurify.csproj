@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
@@ -8,4 +8,15 @@
     <PackageReference Include="Microsoft.Extensions.Options" Version="2.1.0" />
   </ItemGroup>
 
+  <PropertyGroup>
+    <PackageTags>feature flags;.net core 2.0;user specific</PackageTags>
+    <PackageReleaseNotes>Version 1.0.0-beta</PackageReleaseNotes>
+    <PackageIconUrl></PackageIconUrl>
+    <PackageProjectUrl>http://github.com/karthik25/featurify</PackageProjectUrl>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/karthik25/featurify/master/LICENSE.md</PackageLicenseUrl>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>http://github.com/karthik25/featurify</RepositoryUrl>
+    <Description>Featurify is a .net core based package that provides the ability selectively show features without the need for a new release</Description>
+  </PropertyGroup>
 </Project>
