@@ -1,4 +1,10 @@
-﻿@{
+﻿@model ContactViewModel
+@using Featurify.Contracts
+@using Featurify.Demo.Features
+
+@inject IFeaturifyServer Featurify
+
+@{
     ViewData["Title"] = "Contact";
 }
 <h2>@ViewData["Title"]</h2>
@@ -15,3 +21,21 @@
     <strong>Support:</strong> <a href="mailto:Support@example.com">Support@example.com</a><br />
     <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
 </address>
+
+@if (Model.CanImport)
+{
+    <button class="btn btn-success">Import Users</button>
+}
+else
+{
+    <button class="btn btn-danger" disabled>Import Users</button>
+}
+
+@if (await Featurify.Enabled<ExportFeature>())
+{
+    <button class="btn btn-success">Export Users</button>
+}
+else
+{
+    <button class="btn btn-danger" disabled>Export Users</button>
+}

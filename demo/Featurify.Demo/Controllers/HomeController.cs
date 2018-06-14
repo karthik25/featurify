@@ -5,11 +5,20 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Featurify.Demo.Models;
+using Featurify.Contracts;
+using Featurify.Demo.Features;
 
 namespace Featurify.Demo.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IFeaturifyServer server;
+
+        public HomeController(IFeaturifyServer server)
+        {
+            this.server = server;
+        }
+
         public IActionResult Index()
         {
             return View();
@@ -22,11 +31,14 @@ namespace Featurify.Demo.Controllers
             return View();
         }
 
-        public IActionResult Contact()
+        public async Task<IActionResult> Contact()
         {
             ViewData["Message"] = "Your contact page.";
-
-            return View();
+            var model = new ContactViewModel
+            {
+                CanImport = await server.Enabled<ImportFeature>()
+            };
+            return View(model);
         }
 
         public IActionResult Error()
