@@ -11,6 +11,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "demo", "demo", "{684D7A43-B
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Featurify.Demo", "demo\Featurify.Demo\Featurify.Demo.csproj", "{AA473DE9-205F-44EF-B23B-4BFA1E9E3948}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{981FABD6-4A85-46F6-BED9-CEF6E567F733}"
+	ProjectSection(SolutionItems) = preProject
+		ReadMe.md = ReadMe.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
