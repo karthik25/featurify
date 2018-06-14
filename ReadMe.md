@@ -14,21 +14,144 @@ The need for this came up for my project because I found out LaunchDarkly that p
 
 ### Usage
 
-1. Add the Featurify nuget package
+1. Add the Featurify nuget package using the nuget package manager
 
-2. Create a class (implementing `IUserInfoStrategy`) that would provide the user information for the current user
+2. Create a class (implementing `IUserInfoStrategy`) that would provide the user information for the current user. 
 
-3. Create a class  (implementing `IToggleMetadataFinder`) that would provide the metadata for the feature for a/all specific user(s)
+```csharp
+public class DemoAppUserFinderStrategy : IUserInfoStrategy
+{
+   private readonly IHttpContextAccessor accessor;
 
-4. (Optional) Create a class that (implementing `IFeatureNameTransformer`) will dictate the format of feature names. Default is `Featurify.{featureName}`
+   public DemoAppUserFinderStrategy(IHttpContextAccessor accessor)
+   {
+      this.accessor = accessor;
+   }
 
-4. Add the featurify service in Startup.cs
+   public async Task<string> GetCurrentUserId()
+   {
+      // This is just an illustration. In real life you would ideally use the instance of IHttpContextAccessor
+      //      to get the logged in user's user id or email address
+   
+      await Task.CompletedTask;
+      return "b0486d0f-9114-41a7-a095-e4e92201a41e";
+   }
+}
+```
+3. (Optional) Create a class that (implementing `IFeatureNameTransformer`) will dictate the format of feature names. Default is `Featurify.{featureName}`
 
-5. Use it in the controller by injecting `IFeaturifyServer`
+4. Create a class  (implementing `IToggleMetadataFinder`) that would provide the metadata for the feature for a/all specific user(s)
 
-(or)
+```csharp
+public class DemoAppFeatureMetadataFinder: IToggleMetadataFinder
+{
+    private readonly IAppDbContext dbContext;
+
+    public DemoAppFeatureMetadataFinder(IAppDbContext dbContext)
+    {
+        this.dbContext = dbContext;
+    }
+
+    public async Task<IToggleMetadata> FindToggleStatus(string featureName, string userId)
+    {
+        // This is just an illustration. In real life you would use a data context to identify the feature toggle
+        //      status for the user
+        //   userId => this will be logged in user's id identified by your `IUserInfoStrategy` instance
+        //   featureName => the transformed feature name based on your initial setup, default is "Featurify.{featureName}"
+    
+        await Task.CompletedTask;
+        var metadata = new Toggle
+        {
+            Name = featureName,
+            Value = featureName.Contains("ImportFeature") ? true : false,
+            UserId = "?"
+        };
+        return metadata;
+     }
+}
+
+public class Toggle : IToggleMetadata
+{
+     public string Name { get; set; }
+     public bool Value { get; set; }
+     public string UserId { get; set; }
+}
+```
+
+5. Add the featurify service in Startup.cs
+
+```csharp
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddMvc();
+
+    services.AddFeaturify<DemoAppFeatureMetadataFinder, DemoAppUserFinderStrategy>(options =>
+    {
+          options.AnyUserVerifier = "?"; // Identifier if a feature is common for all users
+          options.UseStrict = false; // If this is set to true, and a match is not found, an exception will be thrown
+    });
+}
+```
+
+6. You can now use the package as shown below:
+
+Use it in the controller by injecting `IFeaturifyServer`
+
+```csharp
+// Create a class to represent your feature
+public class ImportFeature : IFeatureToggle
+{
+}
+
+public class HomeController : Controller
+{
+     private readonly IFeaturifyServer server;
+
+     public HomeController(IFeaturifyServer server)
+     {
+        this.server = server;
+     }
+
+     public async Task<IActionResult> Contact()
+     {
+        ViewData["Message"] = "Your contact page.";
+        var model = new ContactViewModel
+           {
+               CanImport = await server.Enabled<ImportFeature>() // Verify if the feature is enabled
+           };
+         return View(model);
+      }
+}
+```
+
+   (or)
 
 Use it from the views by injecting `IFeaturifyServer`
+
+```csharp
+// Create a class to represent your feature
+public class ExportFeature : IFeatureToggle
+{
+}
+```
+
+Use it in a view by inject an instance of `IFeaturifyServer`
+
+```html
+@using Featurify.Contracts
+@using Featurify.Demo.Features
+
+@inject IFeaturifyServer Featurify
+
+@if (await Featurify.Enabled<ExportFeature>())
+{
+    <button class="btn btn-success">Export Users</button>
+}
+else
+{
+    <button class="btn btn-danger" disabled>Export Users</button>
+}
+```
 
 ### Credits
 
