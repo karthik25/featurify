@@ -9,14 +9,14 @@
   </ItemGroup>
 
   <PropertyGroup>
-    <PackageTags>feature flags;.net core 2.0;user specific</PackageTags>
-    <PackageReleaseNotes>Version 1.0.0-beta</PackageReleaseNotes>
+    <PackageTags>feature flags;.net core 2.0;dependency injection;user specific</PackageTags>
+    <PackageReleaseNotes></PackageReleaseNotes>
     <PackageIconUrl></PackageIconUrl>
-    <PackageProjectUrl>http://github.com/karthik25/featurify</PackageProjectUrl>
+    <PackageProjectUrl></PackageProjectUrl>
     <PackageLicenseUrl>https://raw.githubusercontent.com/karthik25/featurify/master/LICENSE.md</PackageLicenseUrl>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>http://github.com/karthik25/featurify</RepositoryUrl>
-    <Description>Featurify is a .net core based package that provides the ability selectively show features without the need for a new release</Description>
+    <Description>Featurify is a .net core based package that provides the ability to selectively show features without the need for a new release</Description>
   </PropertyGroup>
 </Project>
