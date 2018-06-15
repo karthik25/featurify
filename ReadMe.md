@@ -60,7 +60,8 @@ public class DemoAppFeatureMetadataFinder: IToggleMetadataFinder
     {
         // This is just an illustration. In real life you would use a data context to identify the feature toggle
         //      status for the user
-        //   featureName => the transformed feature name based on your initial setup, default is "Featurify.{featureName}"
+        //   featureName => the transformed feature name based on your initial setup
+	//                  default is "Featurify.{featureName}"
         //   userId => this will be logged in user's id identified by your IUserInfoStrategy instance
     
         await Task.CompletedTask;
@@ -68,7 +69,7 @@ public class DemoAppFeatureMetadataFinder: IToggleMetadataFinder
         {
             Name = featureName,
             Value = featureName.Contains("ImportFeature") ? true : false,
-            UserId = "?"
+            UserId = "?" // Indicates any user, see step 5 for more details
         };
         return metadata;
      }
@@ -91,15 +92,17 @@ public void ConfigureServices(IServiceCollection services)
 
     services.AddFeaturify<DemoAppFeatureMetadataFinder, DemoAppUserFinderStrategy>(options =>
     {
-          options.AnyUserVerifier = "?"; // Identifier if a feature is common for all users
-          options.UseStrict = false; // If this is set to true, and a match is not found, an exception will be thrown
+	// Identifier if a feature is common for all users
+        options.AnyUserVerifier = "?"; 
+	// If this is set to true, and a match is not found through IToggleMetadataFinder.FindToggleStatus, an exception will be thrown
+        options.UseStrict = false; 
     });
 }
 ```
 
 6. You can now use the package as shown below:
 
-Use it in the controller by injecting `IFeaturifyServer`
+***Using it in the controller***
 
 ```csharp
 // Create a class to represent your feature
@@ -130,7 +133,7 @@ public class HomeController : Controller
 
    (or)
 
-Use it from the views by injecting `IFeaturifyServer`
+***Use it in the views***
 
 ```csharp
 // Create a class to represent your feature
@@ -139,7 +142,7 @@ public class ExportFeature : IFeatureToggle
 }
 ```
 
-Use it in a view by inject an instance of `IFeaturifyServer`
+Use it in a view by injecting an instance of `IFeaturifyServer`
 
 ```html
 @using Featurify.Contracts
