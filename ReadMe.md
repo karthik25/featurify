@@ -6,11 +6,15 @@ Featurify is just yet another implementation of feature flags thats super easy t
 
 ### Background
 
-Featurify is designed to be really light weight and easily integrate with .net core 2.0+ web applications. This is intended to be one part of a two piece puzzle. If you are interested in simple application settings based feature flags, this library is not for you! There are a number of other options for that purpose (refer to the credits section). 
+Featurify is designed to be really light weight and easily integrate with .net core 2.0+ web applications. This is intended to be 
+one part of a two piece puzzle. If you are interested in simple application settings based feature flags, this library is not for 
+you! There are a number of other options for that purpose (refer to various sections at the end of this file). 
 
-First part of this puzzle is elaborated in the usage section. Second part of the puzzle is to design a user interface that would help administrators identify the features, and also tie them to users (step 2 in usage deals with the integration to this part of the puzzle). 
+First part of this puzzle is elaborated in the usage section. Second part of the puzzle is to design a user interface that would 
+help administrators identify the features, and also tie them to users (step 2 in usage deals with the integration to this part of the puzzle). 
 
-The need for this came up for my project because I found out LaunchDarkly that provides feature flags as a service, but its not free! The not free part let to this package and this would require minimal effort to achieve the same. 
+The need for this came up for my project because I found out LaunchDarkly that provides feature flags as a service, but its not 
+free! The not free part let to this package and this would require minimal effort to achieve the same. 
 
 ### Usage
 
@@ -56,8 +60,8 @@ public class DemoAppFeatureMetadataFinder: IToggleMetadataFinder
     {
         // This is just an illustration. In real life you would use a data context to identify the feature toggle
         //      status for the user
-        //   userId => this will be logged in user's id identified by your `IUserInfoStrategy` instance
         //   featureName => the transformed feature name based on your initial setup, default is "Featurify.{featureName}"
+        //   userId => this will be logged in user's id identified by your IUserInfoStrategy instance
     
         await Task.CompletedTask;
         var metadata = new Toggle
@@ -153,10 +157,16 @@ else
 }
 ```
 
+In both the cases listed above the `FeaturifyServer` first uses the user strategy to get the unique identifier for the logged in user.
+If a custom feature name transformer is defined, that is used to transform the feature name. Then, the metadata finder assigned is 
+used to find the metadata by passing in the feature name and the user id. In this case, for demo purposes, import feature is turned on
+and the export feature is turned off.
+
 ### Credits
 
 * Feature Toggle - For the inspiration to eliminate magic strings (https://github.com/jason-roberts/FeatureToggle)
 
 ### Simple Feature Toggles Based on Application Settings
 
-Check out the http://enterprisedevops.org/feature-toggle-frameworks-list page where feature toggles for various languages are listed
+If you are looking for an implementation of feature flags in .net which can be used out of the box with the help of the application settings file, 
+check out http://enterprisedevops.org/feature-toggle-frameworks-list, where feature toggles for various languages are listed.
