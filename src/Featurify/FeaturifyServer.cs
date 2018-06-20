@@ -35,6 +35,7 @@ namespace Featurify
             var userId = await strategy.GetCurrentUserId();
             var transformedName = transformer.TransformFeatureName(featureName);
             var featureMetadata = await dataFinder.FindToggleStatus(transformedName, userId);
+            // add an Assert step to make sure the feature names match (passed vs received)
             return featureMetadata.IsFeatureEnabled(userId, options);
         }
     }
