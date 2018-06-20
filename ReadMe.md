@@ -18,7 +18,7 @@ free! The not free part let to this package and this would require minimal effor
 
 ### Usage
 
-1. Add the Featurify nuget package using the nuget package manager. The Featurify.Contract nuget package is also added automatically. If you want to have a seperate project to define `IUserInfoStrategy`, `IToggleMetadataFinder' and other associated classes, you can just add the Featurify.Contracts nuget package to that.
+1. Add the `Featurify` nuget package using the nuget package manager. The `Featurify.Contract` nuget package is also added automatically. If you want to have a seperate project to define `IUserInfoStrategy`, `IToggleMetadataFinder` and other associated classes, you can just add the `Featurify.Contracts` nuget package to that.
 
 2. Create a class (implementing `IUserInfoStrategy`) that would provide the user information for the current user. 
 
