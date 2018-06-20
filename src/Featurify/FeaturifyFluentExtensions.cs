@@ -12,10 +12,10 @@ namespace Featurify
             return new FeaturifyState<TFeature>(toggler);
         }
 
-        public async static Task<bool> Enabled<TFeature>(this FeaturifyState<TFeature> pair)
+        public async static Task<bool> Enabled<TFeature>(this FeaturifyState<TFeature> state)
             where TFeature : IFeatureToggle
         {
-            return await pair.Server.Enabled<TFeature>();
+            return await state.Server.Enabled<TFeature>();
         }        
     }
 }
