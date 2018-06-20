@@ -18,7 +18,7 @@ free! The not free part let to this package and this would require minimal effor
 
 ### Usage
 
-1. Add the Featurify nuget package using the nuget package manager
+1. Add the Featurify nuget package using the nuget package manager. The Featurify.Contract nuget package is also added automatically. If you want to have a seperate project to define `IUserInfoStrategy`, `IToggleMetadataFinder' and other associated classes, you can just add the Featurify.Contracts nuget package to that.
 
 2. Create a class (implementing `IUserInfoStrategy`) that would provide the user information for the current user. 
 
@@ -124,7 +124,7 @@ public class HomeController : Controller
         ViewData["Message"] = "Your contact page.";
         var model = new ContactViewModel
            {
-               CanImport = await server.Enabled<ImportFeature>() // Verify if the feature is enabled
+               CanImport = await server.Is<ImportFeature>().Enabled() // Verify if the feature is enabled
            };
          return View(model);
       }
@@ -145,6 +145,33 @@ public class ExportFeature : IFeatureToggle
 Use it in a view by injecting an instance of `IFeaturifyServer`
 
 ```html
+@using Featurify
+@using Featurify.Contracts
+@using Featurify.Demo.Features
+
+@inject IFeaturifyServer Featurify
+
+@if (await Featurify.Is<ExportFeature>().Enabled())
+{
+    <button class="btn btn-success">Export Users</button>
+}
+else
+{
+    <button class="btn btn-danger" disabled>Export Users</button>
+}
+```
+
+In both the cases listed above the `FeaturifyServer` first uses the user strategy to get the unique identifier for the logged in user.
+If a custom feature name transformer is defined, that is used to transform the feature name. Then, the metadata finder assigned is 
+used to find the metadata by passing in the feature name and the user id. In this case, for demo purposes, import feature is turned on
+and the export feature is turned off.
+
+### Note
+
+There is also a syntactic sugar that you can use when verifying if a feature is enabled for the logged in user. Here is an example:
+
+```html
+@using Featurify
 @using Featurify.Contracts
 @using Featurify.Demo.Features
 
@@ -160,10 +187,6 @@ else
 }
 ```
 
-In both the cases listed above the `FeaturifyServer` first uses the user strategy to get the unique identifier for the logged in user.
-If a custom feature name transformer is defined, that is used to transform the feature name. Then, the metadata finder assigned is 
-used to find the metadata by passing in the feature name and the user id. In this case, for demo purposes, import feature is turned on
-and the export feature is turned off.
 
 ### Credits
 
