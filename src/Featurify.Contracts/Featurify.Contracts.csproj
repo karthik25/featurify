@@ -5,14 +5,14 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <PackageTags>feature flags;.net core 2.0;dependency injection;user specific; contracts</PackageTags>
+    <PackageTags>feature flags;user specific; contracts</PackageTags>
     <PackageReleaseNotes></PackageReleaseNotes>
     <PackageIconUrl></PackageIconUrl>
-    <PackageProjectUrl></PackageProjectUrl>
+    <PackageProjectUrl>https://www.nuget.org/packages/Featurify.Contracts/</PackageProjectUrl>
     <PackageLicenseUrl>https://raw.githubusercontent.com/karthik25/featurify/master/LICENSE.md</PackageLicenseUrl>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>http://github.com/karthik25/featurify</RepositoryUrl>
-    <Description>Featurify.Contracts provides all the necessary interfaces required to define classes required while adding the Featurify service</Description>
+    <Description>Featurify.Contracts provides all the necessary interfaces required to define classes required while adding the Featurify package for implementing user specific feature toggles</Description>
   </PropertyGroup>
 </Project>

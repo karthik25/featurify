@@ -13,14 +13,14 @@
   </ItemGroup>
 
   <PropertyGroup>
-    <PackageTags>feature flags;.net core 2.0;dependency injection;user specific</PackageTags>
+    <PackageTags>feature flags;user specific</PackageTags>
     <PackageReleaseNotes></PackageReleaseNotes>
     <PackageIconUrl></PackageIconUrl>
-    <PackageProjectUrl></PackageProjectUrl>
+    <PackageProjectUrl>https://www.nuget.org/packages/Featurify/</PackageProjectUrl>
     <PackageLicenseUrl>https://raw.githubusercontent.com/karthik25/featurify/master/LICENSE.md</PackageLicenseUrl>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>http://github.com/karthik25/featurify</RepositoryUrl>
-    <Description>Featurify is a .net core based package that provides the ability to selectively show features without the need for a new release</Description>
+    <Description>Featurify is a package that provides the ability to selectively show features without the need for a new release. It specifically targets user specific features and leverages the DI framework to identify the metada and the user, instead of using application settings.</Description>
   </PropertyGroup>
 </Project>
