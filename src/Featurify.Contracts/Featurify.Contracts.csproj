@@ -5,10 +5,14 @@
   </PropertyGroup>
 
   <PropertyGroup>
+    <Version>1.0.1</Version>
+  </PropertyGroup>
+
+  <PropertyGroup>
     <PackageTags>feature flags;user specific; contracts</PackageTags>
     <PackageReleaseNotes></PackageReleaseNotes>
     <PackageIconUrl></PackageIconUrl>
-    <PackageProjectUrl>https://www.nuget.org/packages/Featurify.Contracts/</PackageProjectUrl>
+    <PackageProjectUrl>http://github.com/karthik25/featurify</PackageProjectUrl>
     <PackageLicenseUrl>https://raw.githubusercontent.com/karthik25/featurify/master/LICENSE.md</PackageLicenseUrl>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <RepositoryType>git</RepositoryType>

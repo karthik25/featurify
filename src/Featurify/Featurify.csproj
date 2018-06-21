@@ -4,6 +4,10 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <Version>1.0.1</Version>
+  </PropertyGroup>
+  
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Options" Version="2.1.0" />
   </ItemGroup>
@@ -16,7 +20,7 @@
     <PackageTags>feature flags;user specific</PackageTags>
     <PackageReleaseNotes></PackageReleaseNotes>
     <PackageIconUrl></PackageIconUrl>
-    <PackageProjectUrl>https://www.nuget.org/packages/Featurify/</PackageProjectUrl>
+    <PackageProjectUrl>http://github.com/karthik25/featurify</PackageProjectUrl>
     <PackageLicenseUrl>https://raw.githubusercontent.com/karthik25/featurify/master/LICENSE.md</PackageLicenseUrl>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <RepositoryType>git</RepositoryType>
