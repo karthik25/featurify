@@ -11,7 +11,7 @@ namespace Featurify.Demo.Infrastructure
             var metadata = new Toggle
             {
                 Name = featureName,
-                Value = featureName.Contains("ImportFeature") ? true : false,
+                Value = featureName.Contains("ImportFeature") || featureName.Contains("EmailFeature") ? true : false,
                 UserId = "?"
             };
             return metadata;

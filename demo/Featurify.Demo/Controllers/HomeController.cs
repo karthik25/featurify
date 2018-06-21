@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
+﻿using System.Diagnostics;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Featurify.Demo.Models;
@@ -36,7 +33,7 @@ namespace Featurify.Demo.Controllers
             ViewData["Message"] = "Your contact page.";
             var model = new ContactViewModel
             {
-                CanImport = await server.Enabled<ImportFeature>()
+                CanImport = await server.Is<ImportFeature>().Enabled()
             };
             return View(model);
         }

@@ -1,4 +1,5 @@
 ﻿@model ContactViewModel
+@using Featurify
 @using Featurify.Contracts
 @using Featurify.Demo.Features
 
@@ -7,35 +8,43 @@
 @{
     ViewData["Title"] = "Contact";
 }
+
 <h2>@ViewData["Title"]</h2>
-<h3>@ViewData["Message"]</h3>
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
-
-<address>
-    <strong>Support:</strong> <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
-
+<strong>ImportFeature</strong>: Enabled
+<br /><br />
 @if (Model.CanImport)
 {
-    <button class="btn btn-success">Import Users</button>
+    <button class="btn btn-success"><i class="glyphicon glyphicon-import"></i> Import Users</button>
 }
 else
 {
-    <button class="btn btn-danger" disabled>Import Users</button>
+    <button class="btn btn-danger" disabled><i class="glyphicon glyphicon-import"></i> Import Users</button>
 }
 
-@if (await Featurify.Enabled<ExportFeature>())
+<br /><br />
+
+<strong>ExportFeature</strong>: Disabled
+<br /><br />
+@if (await Featurify.Is<ExportFeature>().Enabled())
 {
-    <button class="btn btn-success">Export Users</button>
+    <button class="btn btn-success"><i class="glyphicon glyphicon-export"></i> Export Users</button>
 }
 else
 {
-    <button class="btn btn-danger" disabled>Export Users</button>
+    <button class="btn btn-danger" disabled><i class="glyphicon glyphicon-export"></i> Export Users</button>
+}
+
+<br /><br />
+
+<strong>EmailFeature</strong>: Enabled
+<br /><br />
+
+@if (await Featurify.Enabled<EmailFeature>())
+{
+    <button class="btn btn-success"><i class="glyphicon glyphicon-send"></i> Send Email</button>
+}
+else
+{
+    <button class="btn btn-danger" disabled><i class="glyphicon glyphicon-send"></i> Send Email</button>
 }
