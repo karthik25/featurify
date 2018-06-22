@@ -102,7 +102,7 @@ public void ConfigureServices(IServiceCollection services)
 
 6. You can now use the package as shown below:
 
-***Using it in the controller***
+***Use it in the controller***
 
 ```csharp
 // Create a class to represent your feature
