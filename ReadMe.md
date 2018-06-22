@@ -187,6 +187,9 @@ else
 }
 ```
 
+### More Samples
+
+There are a few more samples in [this](https://github.com/karthik25/featurify-samples) repository. Check out the sample within ***identity-framework*** for an implementation in a project that uses the identity framework. The toggle metadata is out of a static list though in this case.
 
 ### Credits
 
