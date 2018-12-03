@@ -28,7 +28,7 @@ namespace Featurify.Demo.Controllers
             return View();
         }
 
-        public async Task<IActionResult> Contact()
+        public async Task<IActionResult> Demo()
         {
             ViewData["Message"] = "Your contact page.";
             var model = new ContactViewModel
