@@ -12,11 +12,11 @@
     <PackageTags>feature flags;user specific; contracts</PackageTags>
     <PackageReleaseNotes></PackageReleaseNotes>
     <PackageIconUrl></PackageIconUrl>
-    <PackageProjectUrl>http://github.com/karthik25/featurify</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/karthik25/featurify</PackageProjectUrl>
     <PackageLicenseUrl>https://raw.githubusercontent.com/karthik25/featurify/master/LICENSE.md</PackageLicenseUrl>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <RepositoryType>git</RepositoryType>
-    <RepositoryUrl>http://github.com/karthik25/featurify</RepositoryUrl>
+    <RepositoryUrl>https://github.com/karthik25/featurify</RepositoryUrl>
     <Description>Featurify.Contracts provides all the necessary interfaces required to define classes required while adding the Featurify package for implementing user specific feature toggles</Description>
   </PropertyGroup>
 </Project>
